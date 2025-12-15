@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nornabilah's Student Bento Grid</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        /*
+        * 1. Variables and Base Styles
+        */
+        :root {
+            --color-background: #f8f9fa; /* Soft White/Light Grey */
+            --color-card-bg: #ffffff;    /* White */
+            --color-text: #212529;       /* Dark Grey */
+            --color-secondary-text: #6c757d; /* Medium Grey */
+            --color-accent: #004c99;     /* Deep Ocean Blue (New Accent) */
+            --border-radius: 12px;
+            --padding: 20px;
+            --gap: 16px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-background);
+            color: var(--color-text);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        /*
+        * 2. Bento Grid Layout (Desktop)
+        */
+        .bento-grid {
+            display: grid;
+            gap: var(--gap);
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: minmax(120px, auto);
+        }
+
+        .card {
+            background-color: var(--color-card-bg);
+            border-radius: var(--border-radius);
+            padding: var(--padding);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #e9ecef;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Card-Specific Styling for Content */
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--color-text);
+        }
+
+        .card-content {
+            flex-grow: 1;
+        }
+
+        .subtle-text {
+            color: var(--color-secondary-text);
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .accent-text {
+            color: var(--color-accent);
+            font-weight: 600;
+        }
+
+        .link-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 15px;
+        }
+
+        .link-list li {
+            margin-bottom: 5px;
+        }
+
+        .link-list a {
+            color: var(--color-accent);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .link-list a:hover {
+            color: #003366; /* Darker blue on hover */
+        }
+
+        /*
+        * 3. Grid Item Sizing (Desktop Specific)
+        */
+
+        /* Card 1 (Profile): Large box (2x2) */
+        .card-profile {
+            grid-column: span 2;
+            grid-row: span 2;
+            background-color: var(--color-accent);
+            color: white;
+            justify-content: space-between; /* Push links to bottom */
+        }
+        .card-profile .card-title {
+            font-size: 2.5rem; /* Slightly larger name */
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 5px;
+            color: white;
+        }
+        .card-profile .tagline {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 20px;
+        }
+        .card-profile .subtle-text {
+            color: rgba(255, 255, 255, 0.8);
+        }
+        .card-profile .link-list a {
+            color: white;
+            text-decoration: underline;
+        }
+
+        /* Card 2 (Location): Small box (1x1) - Top Right */
+        .card-location {
+            grid-column: 3 / span 1;
+            grid-row: 1 / span 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Card 3 (Tech Stack): Medium box (1x2) - Middle Right */
+        .card-tech-stack {
+            grid-column: 3 / span 1;
+            grid-row: 2 / span 2;
+        }
+        .subject-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .subject-list li {
+            background-color: #e6f0ff; /* Very light blue tag background */
+            color: var(--color-accent);
+            display: inline-block;
+            padding: 6px 10px;
+            border-radius: 5px;
+            margin: 0 8px 8px 0;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Card 4 (Case Study): Medium box (1x1) - Bottom Left */
+        .card-case-study {
+            grid-column: 1 / span 1;
+            grid-row: 3 / span 1;
+        }
+
+        /* Card 5 (Hobby): Small box (1x1) - Bottom Middle */
+        .card-hobby {
+            grid-column: 2 / span 1;
+            grid-row: 3 / span 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Card 6 (Playlist): Wide box (3x1) - Bottom Row */
+        .card-playlist {
+            grid-column: 1 / span 3;
+            grid-row: 4 / span 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 80px;
+            background-color: #f1f3f5;
+        }
+
+
+        /*
+        * 4. Responsiveness (Mobile)
+        */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .bento-grid {
+                grid-template-columns: 1fr;
+                grid-auto-rows: auto;
+            }
+
+            /* Reset all grid-span properties to 1x1 on mobile */
+            .card-profile,
+            .card-location,
+            .card-tech-stack,
+            .card-case-study,
+            .card-hobby,
+            .card-playlist {
+                grid-column: span 1 !important;
+                grid-row: auto !important;
+                height: auto;
+                min-height: 120px;
+            }
+
+            .card-profile .card-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="bento-grid">
+
+            <div class="card card-profile">
+                <div>
+                    <p class="subtle-text">STUDENT PROFILE</p>
+                    <h1 class="card-title">Nornabilah</h1>
+                    <p class="tagline">'Innovating food safety.'</p>
+                    <p class="subtle-text">Program: <span style="font-weight: 600;">Bachelor of Food Science (Honours)</span></p>
+                    <p class="subtle-text">Year: **Year 2 / Semester 2**</p>
+                </div>
+
+                <ul class="link-list">
+                    <li><a href="#" target="_blank">LinkedIn Profile →</a></li>
+                    <li><a href="#" target="_blank">GitHub Repository →</a></li>
+                    <li><a href="#" target="_blank">UMT Student Portal →</a></li>
+                </ul>
+            </div>
+
+            <div class="card card-location">
+                <p class="subtle-text" style="margin-bottom: 5px;">📍 CURRENT LOCATION</p>
+                <h2 class="card-title" style="margin-bottom: 5px;">UMT, Kuala Nerus</h2>
+                <p class="subtle-text">10:07 AM (Kuala Terengganu, MY)</p>
+            </div>
+
+            <div class="card card-case-study">
+                <p class="subtle-text">RECENT WORK / CASE STUDY</p>
+                <h2 class="card-title">Starch Gelatinization in Local Kuih</h2>
+                <p class="subtle-text">**Description:** Analyzing texture profiles of *Kuih Lapis* using $\text{DSC}$ and $\text{TPA}$.</p>
+                <p class="accent-text">View Experiment Log →</p>
+            </div>
+
+            <div class="card card-hobby">
+                <p class="subtle-text">CAMPUS ACTIVITY / RELAXATION</p>
+                <h2 class="card-title">Evening Walks</h2>
+                <p class="accent-text">Location: Pantai UMT (To de-stress)</p>
+            </div>
+
+            <div class="card card-tech-stack">
+                <p class="subtle-text">CORE SUBJECTS / SKILLS</p>
+                <h2 class="card-title">Food Science Stack</h2>
+                <div class="card-content">
+                    <ul class="subject-list">
+                        <li>Food Chemistry</li>
+                        <li>Food Microbiology</li>
+                        <li>Lab Analysis Skills</li>
+                        <li>$\text{Microsoft Excel}$ ($\text{Data Analysis}$)</li>
+                        <li>Food Law & Regulations</li>
+                        <li>$\text{HACCP}$ Principles</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card card-playlist">
+                <p class="subtle-text">🎧 **STUDY PLAYLIST:** Ambient Focus Music for Lab Work (Placeholder)</p>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
