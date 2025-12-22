@@ -242,6 +242,54 @@
                 font-size: 1.8rem;
             }
         }
+
+/* Container styling to center the button */
+    .button-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        background: transparent;
+    }
+
+    /* The Link transformed into a Beautiful Button */
+    .focus-timer-btn {
+        display: inline-block;
+        padding: 12px 32px;
+        font-family: 'Quicksand', sans-serif;
+        font-weight: 600;
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: #6d5959; /* Muted lofi brown */
+        text-decoration: none;
+        
+        /* Glassmorphism Effect */
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        
+        /* Borders and Radii */
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        border-radius: 50px; /* Pill shape */
+        
+        /* Depth and Motion */
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    /* Hover Effects */
+    .focus-timer-btn:hover {
+        background: rgba(255, 255, 255, 0.9);
+        transform: translateY(-4px) scale(1.02);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+        color: #ffb7b2; /* Soft pastel pink */
+    }
+
+    /* Active (Click) Effect */
+    .focus-timer-btn:active {
+        transform: translateY(-1px);
+    }
     </style>
 </head>
 <body>
@@ -304,6 +352,10 @@
                 <h2 class="card-title">Why Food Tech Matters in Malaysia</h2>
                 <p class="card-content">Sustainable food security is crucial for our future. By optimizing local processing methods, we can reduce waste and improve nutrition.</p>
             </div>
+
+	<div class="button-wrapper">
+    <a href="app.html" class="focus-timer-btn">Focus Timer</a>
+</div>
 
 
             <div class="card card-playlist">
